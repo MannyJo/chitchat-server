@@ -12,6 +12,10 @@ const PORT = process.env.PORT || 5000;
 app.use(cors());
 app.use(express.static('build'));
 
+app.get('/', (req, res) => {
+    res.send("Server is running!");
+});
+
 io.on('connect', (socket) => {
     socket.on('join', ({ name, room }, callback) => {
         const { error, user } = addUser({ id: socket.id, name, room });
